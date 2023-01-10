@@ -26,6 +26,12 @@
 import { defineComponent, PropType, ref } from "vue";
 import { Link } from "@/interfaces/link";
 
+interface NavbarProps {
+  title: string,
+  links: Link[],
+  color?: string,  
+}
+
 export default defineComponent({
   name: "NavBar",
   props: {
@@ -44,7 +50,7 @@ export default defineComponent({
     },
     color: String    
   },
-  setup(props) {
+  setup(props: NavbarProps) {
     const greeting = ref<string>('Saludos!');
     if(props.color === 'red') {
       greeting.value = 'Feliz Navidad!'
