@@ -3,6 +3,7 @@
     <div class="title">
       <h4>{{ title }}</h4>
     </div>
+    <span>{{ greeting }}</span>
     <div class="links" v-if="links">
       <!-- <a
         v-for="link in links"
@@ -22,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { Link } from "@/interfaces/link";
 
 export default defineComponent({
@@ -41,12 +42,18 @@ export default defineComponent({
         ];
       },
     },
-    color: {
-      type: String
-    }
+    color: String
+    
   },
-  setup() {
-    return {}
+  setup(props) {
+    const greeting = ref<string>('Saludos!');
+    if(props.color === 'red') {
+      greeting.value = 'Feliz Navidad!'
+    }
+
+    return {
+      greeting,
+    }
   }
 });
 </script>
@@ -58,6 +65,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: #2c3e50;
+  color: white
 }
 h4 {
   color: white;
