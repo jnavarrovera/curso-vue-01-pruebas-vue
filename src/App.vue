@@ -4,38 +4,49 @@
     :color="'red'"
     :links="[
       { label: 'Facebook', link: 'https://facebook.es' },
-      { label: 'Twitter', link: 'https://twitter.es', style:'important-link' },
+      { label: 'Twitter', link: 'https://twitter.es', style: 'important-link' },
     ]"
     @buttonClicked="alertaClick($event)"
   />
   <!-- Son equivalentes  -->
   <!-- @buttonClicked="alertaClick($event)" -->
   <!-- @buttonClicked="alertaClick" -->
+  <br /><br />
 
+  <!-- <CustomButton></CustomButton> -->
+  <custom-button>
+    <span style="font-size:xx-large">desde el slot</span>
+    <template v-slot:left-icon>
+      <span>usuario </span>
+    </template>
+    <template v-slot:right-icon>
+      <span> buscar</span>
+    </template>
+  </custom-button>
 
   <!-- <router-view /> -->
-
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import NavBar from "./components/NavBar.vue";
+import NavBar from "@/components/NavBar.vue";
+import CustomButton from "@/components/CustomButton.vue";
 import { Link } from "./interfaces/link";
 
 export default defineComponent({
   name: "AppComponent",
   components: {
     NavBar,
+    CustomButton,
   },
   setup() {
-    const hola = () => alert('hola');
+    const hola = () => alert("hola");
     return {
-      alertaClick: (link: Link) => alert(link.label + ' Pulsado!'),
+      alertaClick: (link: Link) => alert(link.label + " Pulsado!"),
       hola, // sólo hay que devolver elementos que se usen en el template
-    }
-  }
+    };
+  },
 });
-
 </script>
 
 
