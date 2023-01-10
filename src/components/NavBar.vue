@@ -42,8 +42,7 @@ export default defineComponent({
         ];
       },
     },
-    color: String
-    
+    color: String    
   },
   setup(props) {
     const greeting = ref<string>('Saludos!');
