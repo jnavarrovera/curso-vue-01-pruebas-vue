@@ -13,10 +13,19 @@
         target="_blank"
         >{{ link.label }}</a
       > -->
-      <button
+
+      <!-- Emitir eventos directamente -->
+      <!-- <button
         v-for="link in links"
         :key="link.label"
         @click="$emit('buttonClicked', link)"
+      >{{ link.label }}</button> -->
+
+      <!-- Emitir eventos a través de una función que haga más cosas -->
+      <button
+        v-for="link in links"
+        :key="link.label"
+        @click="onClick(link)"
       >{{ link.label }}</button>
     </div>
   </nav>
@@ -34,6 +43,7 @@ interface NavbarProps {
 
 export default defineComponent({
   name: "NavBar",
+  emits:['buttonClicked'],
   props: {
     title: {
       type: String,
@@ -50,7 +60,7 @@ export default defineComponent({
     },
     color: String    
   },
-  setup(props: NavbarProps) {
+  setup(props: NavbarProps, ctx) {
     const greeting = ref<string>('Saludos!');
     if(props.color === 'red') {
       greeting.value = 'Feliz Navidad!'
@@ -58,6 +68,11 @@ export default defineComponent({
 
     return {
       greeting,
+      onClick: (link: Link) => {
+        console.log('onClick',link);
+        // hacer cosas importantes de programador serio...
+        ctx.emit('buttonClicked', link)
+      }
     }
   }
 });
