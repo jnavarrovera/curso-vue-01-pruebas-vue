@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav :class="{'bg-red':color==='red'}">
     <div class="title">
       <h4>{{ title }}</h4>
     </div>
@@ -8,6 +8,7 @@
         v-for="link in links"
         :key="link.label"
         :href="link.link"
+        
         target="_blank"
         >{{ link.label }}</a
       >
@@ -30,11 +31,14 @@ export default defineComponent({
       type: Array as PropType<Link[]>,
       default(): Link[] {
         return [
-          { label: "Google", link: "http://www.google.es" },
+          { label: "cosa", link: "http://www.google.es" },
           { label: "Vue", link: "https://vuejs.org" },
         ];
       },
     },
+    color: {
+      type: String
+    }
   },
 });
 </script>
@@ -58,5 +62,8 @@ nav a {
   font-weight: bold;
   color: white;
   padding: 10px;
+}
+.bg-red {
+  background-color: red;
 }
 </style>

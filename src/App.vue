@@ -1,9 +1,10 @@
 <template>
   <NavBar
-    title="Hola Mundo de Vue"
+    title="Hola Mundo"
+    :color="'red'"
     :links="[
-      { label: 'Google 2', link: 'http://www.google.es' },
-      { label: 'Vue 2', link: 'https://vuejs.org' },
+      { label: 'Facebook', link: 'https://facebook.es' },
+      { label: 'Facebook', link: 'https://facebook.es' },
     ]"
   />
   <!-- <router-view /> -->
