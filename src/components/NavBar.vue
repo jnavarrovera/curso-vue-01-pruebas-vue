@@ -4,14 +4,19 @@
       <h4>{{ title }}</h4>
     </div>
     <div class="links" v-if="links">
-      <a
+      <!-- <a
         v-for="link in links"
         :key="link.label"
         :href="link.link"
-        
+        :class="link.style"
         target="_blank"
         >{{ link.label }}</a
-      >
+      > -->
+      <button
+        v-for="link in links"
+        :key="link.label"
+        @click="$emit('buttonClicked', link)"
+      >{{ link.label }}</button>
     </div>
   </nav>
 </template>
@@ -40,6 +45,9 @@ export default defineComponent({
       type: String
     }
   },
+  setup() {
+    return {}
+  }
 });
 </script>
 
@@ -65,5 +73,9 @@ nav a {
 }
 .bg-red {
   background-color: red;
+}
+
+.important-link {
+  font-size: larger;
 }
 </style>
