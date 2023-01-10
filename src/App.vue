@@ -13,16 +13,37 @@
   <!-- @buttonClicked="alertaClick" -->
   <br /><br />
 
-  <!-- <CustomButton></CustomButton> -->
-  <custom-button>
-    <span style="font-size:xx-large">desde el slot</span>
+  <!-- <custom-button>
+    <span style="font-size: xx-large">desde el slot</span>
     <template v-slot:left-icon>
       <span>usuario </span>
     </template>
     <template v-slot:right-icon>
       <span> buscar</span>
     </template>
-  </custom-button>
+  </custom-button> -->
+  <br />
+  <custom-card>
+    <template v-slot:header>
+      <h3>Card header</h3>
+    </template>
+    <template v-slot:body>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus sint
+        odio, ex culpa quam sequi veritatis. Velit perspiciatis obcaecati
+        voluptas. Velit tempore odio vel! Itaque cupiditate accusamus eos
+        temporibus repellat.
+      </p>
+      <CustomButton>
+        hola
+      </CustomButton>
+    </template>
+    <template v-slot:footer>
+      <div>
+        <span style="color: purple">Footer</span>
+      </div>
+    </template>
+  </custom-card>
 
   <!-- <router-view /> -->
 </template>
@@ -31,6 +52,7 @@
 import { defineComponent } from "vue";
 import NavBar from "@/components/NavBar.vue";
 import CustomButton from "@/components/CustomButton.vue";
+import CustomCard from "@/components/CustomCard.vue";
 import { Link } from "./interfaces/link";
 
 export default defineComponent({
@@ -38,6 +60,7 @@ export default defineComponent({
   components: {
     NavBar,
     CustomButton,
+    CustomCard,
   },
   setup() {
     const hola = () => alert("hola");
