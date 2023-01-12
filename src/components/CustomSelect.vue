@@ -44,6 +44,7 @@ export default defineComponent({
 
     onMounted(() => {
       console.log("onMounted");
+      // color.value = 'blue';
     });
 
     onUpdated(() => {
