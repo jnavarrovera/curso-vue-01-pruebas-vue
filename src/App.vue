@@ -22,6 +22,7 @@
       <span> buscar</span>
     </template>
   </custom-button> -->
+  <CustomSelect />
   <br />
   <custom-card>
     <template v-slot:header>
@@ -53,6 +54,7 @@ import { defineComponent } from "vue";
 import NavBar from "@/components/NavBar.vue";
 import CustomButton from "@/components/CustomButton.vue";
 import CustomCard from "@/components/CustomCard.vue";
+import CustomSelect from "@/components/CustomSelect.vue";
 import { Link } from "./interfaces/link";
 
 export default defineComponent({
@@ -61,6 +63,7 @@ export default defineComponent({
     NavBar,
     CustomButton,
     CustomCard,
+    CustomSelect
   },
   setup() {
     const hola = () => alert("hola");
