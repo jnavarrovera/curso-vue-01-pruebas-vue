@@ -35,9 +35,7 @@
         voluptas. Velit tempore odio vel! Itaque cupiditate accusamus eos
         temporibus repellat.
       </p>
-      <CustomButton>
-        hola
-      </CustomButton>
+      <CustomButton> hola </CustomButton>
     </template>
     <template v-slot:footer>
       <div>
@@ -63,10 +61,26 @@ export default defineComponent({
     NavBar,
     CustomButton,
     CustomCard,
-    CustomSelect
+    CustomSelect,
   },
   setup() {
     const hola = () => alert("hola");
+    console.log("creamos en el setup");
+
+    // onBeforeMount(() => {
+    //   console.log("onBeforeMount");
+    // });
+
+    // onMounted(() => {
+    //   console.log("onMounted");
+    // });
+
+    // onUnmounted(() => {
+    //   console.log("onUnmounted");
+    // });
+
+    console.log("seguimos en el setup");
+
     return {
       alertaClick: (link: Link) => alert(link.label + " Pulsado!"),
       hola, // sólo hay que devolver elementos que se usen en el template
