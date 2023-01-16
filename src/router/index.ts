@@ -20,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "detail",
     component: () =>
       import(/*webpackChunkName: detail*/ "../views/DetailView.vue"),
+    props: (route) => {
+      const id = Number(route.params.id);
+      const userRole = localStorage.getItem('userRole');
+      return isNaN(id) ? { id: null, userRole } : { id, userRole };
+    },
   },
 ];
 

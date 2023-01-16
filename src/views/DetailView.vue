@@ -1,22 +1,24 @@
 <template>
     <div>
         <h1>Detalle: {{ id }}</h1>
+        <h2>Role: {{ userRole }}</h2>
     </div>    
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-     setup() {
-        const route = useRoute();
+    props: {
+        id: {
+            type: Number,
+            required: true
+        },
+        userRole: String
+    },
+     setup() {      
 
-        console.log(route.params)
-
-        const id = ref<string>(route.params.id as string);
-
-        return {id}
+        return {}
     },
 })
 </script>

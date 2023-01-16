@@ -1,7 +1,7 @@
 <template>
   <NavBar
-    title="Hola Mundo"
-    :color="'red'"
+    title="Odio Vue"
+    :color="'blue'"
     :links="[
       { label: 'Facebook', link: 'https://facebook.es' },
       { label: 'Twitter', link: 'https://twitter.es', style: 'important-link' },
@@ -11,6 +11,11 @@
   <NavBarLinks/>
 
   <router-view />
+
+  <!-- <DetailView
+   :id="4"
+   userRole="desde componente"
+  ></DetailView> -->
 </template>
 
 <script lang="ts">
@@ -18,12 +23,14 @@ import { defineComponent } from "vue";
 import NavBar from "@/components/NavBar.vue";
 import NavBarLinks from "@/components/NavBarLinks.vue"
 import { Link } from "./interfaces/link";
+// import DetailView from "./views/DetailView.vue"
 
 export default defineComponent({
   name: "AppComponent",
   components: {
     NavBar,
-    NavBarLinks
+    NavBarLinks,
+    // DetailView
   },
   setup() {
     const hola = () => alert("hola");
