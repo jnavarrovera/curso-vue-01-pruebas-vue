@@ -8,78 +8,25 @@
     ]"
     @buttonClicked="alertaClick($event)"
   />
-  <!-- Son equivalentes  -->
-  <!-- @buttonClicked="alertaClick($event)" -->
-  <!-- @buttonClicked="alertaClick" -->
-  <br /><br />
+  <NavBarLinks/>
 
-  <!-- <custom-button>
-    <span style="font-size: xx-large">desde el slot</span>
-    <template v-slot:left-icon>
-      <span>usuario </span>
-    </template>
-    <template v-slot:right-icon>
-      <span> buscar</span>
-    </template>
-  </custom-button> -->
-  <CustomSelect />
-  <br />
-  <custom-card>
-    <template v-slot:header>
-      <h3>Card header</h3>
-    </template>
-    <template v-slot:body>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus sint
-        odio, ex culpa quam sequi veritatis. Velit perspiciatis obcaecati
-        voluptas. Velit tempore odio vel! Itaque cupiditate accusamus eos
-        temporibus repellat.
-      </p>
-      <CustomButton> hola </CustomButton>
-    </template>
-    <template v-slot:footer>
-      <div>
-        <span style="color: purple">Footer</span>
-      </div>
-    </template>
-  </custom-card>
-
-  <!-- <router-view /> -->
+  <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavBar from "@/components/NavBar.vue";
-import CustomButton from "@/components/CustomButton.vue";
-import CustomCard from "@/components/CustomCard.vue";
-import CustomSelect from "@/components/CustomSelect.vue";
+import NavBarLinks from "@/components/NavBarLinks.vue"
 import { Link } from "./interfaces/link";
 
 export default defineComponent({
   name: "AppComponent",
   components: {
     NavBar,
-    CustomButton,
-    CustomCard,
-    CustomSelect,
+    NavBarLinks
   },
   setup() {
     const hola = () => alert("hola");
-    console.log("creamos en el setup");
-
-    // onBeforeMount(() => {
-    //   console.log("onBeforeMount");
-    // });
-
-    // onMounted(() => {
-    //   console.log("onMounted");
-    // });
-
-    // onUnmounted(() => {
-    //   console.log("onUnmounted");
-    // });
-
-    console.log("seguimos en el setup");
 
     return {
       alertaClick: (link: Link) => alert(link.label + " Pulsado!"),
