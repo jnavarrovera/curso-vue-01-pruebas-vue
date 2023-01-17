@@ -1,5 +1,5 @@
 <template>
-  <nav :class="{'bg-red':color==='red'}">
+  <nav :class="{ 'bg-red': color === 'red' }">
     <div class="title">
       <h4>{{ title }}</h4>
     </div>
@@ -22,28 +22,28 @@
       >{{ link.label }}</button> -->
 
       <!-- Emitir eventos a través de una función que haga más cosas -->
-      <button
-        v-for="link in links"
-        :key="link.label"
-        @click="onClick(link)"
-      >{{ link.label }}</button>
+      <button v-for="link in links" :key="link.label" @click="onClick(link)" class="btn btn-primary">
+        {{ link.label }}
+      </button>
+      <button @click="changeGreeting">Cambiar estado</button>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+import { computed, defineComponent, PropType} from "vue";
 import { Link } from "@/interfaces/link";
+import { useStore } from "vuex";
 
 interface NavbarProps {
-  title: string,
-  links: Link[],
-  color?: string,  
+  title: string;
+  links: Link[];
+  color?: string;
 }
 
 export default defineComponent({
   name: "NavBar",
-  emits:['buttonClicked'],
+  emits: ["buttonClicked"],
   props: {
     title: {
       type: String,
@@ -58,23 +58,28 @@ export default defineComponent({
         ];
       },
     },
-    color: String    
+    color: String,
   },
   setup(props: NavbarProps, ctx) {
-    const greeting = ref<string>('Saludos!');
-    if(props.color === 'red') {
-      greeting.value = 'Feliz Navidad!'
-    }
+    const store = useStore();
+    // const greeting = ref<string>(store.state.greeting);
+    // if (props.color === "red") {
+    //   greeting.value = "Feliz Navidad!";
+    // }
 
     return {
-      greeting,
+      greeting: computed(()=> store.getters['saludo']),
       onClick: (link: Link) => {
-        console.log('onClick',link);
+        console.log("onClick", link);
         // hacer cosas importantes de programador serio...
-        ctx.emit('buttonClicked', link)
-      }
-    }
-  }
+        ctx.emit("buttonClicked", link);
+      },
+      changeGreeting: () => {
+        store.commit("cambiaSaludo", 'Qué locura de Vuex');
+      },
+
+    };
+  },
 });
 </script>
 
@@ -85,7 +90,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: #2c3e50;
-  color: white
+  color: white;
 }
 h4 {
   color: white;

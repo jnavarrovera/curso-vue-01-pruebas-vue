@@ -1,14 +1,24 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
-  },
-  getters: {
+    authUser: {
+      id: 5,
+      email: "hola@email.com",
+      name: "Pepe",
+    },
+    greeting: "Hola a todas!",
   },
   mutations: {
+    cambiaSaludo(state, saludo: string) {
+      state.greeting = saludo;
+    },
   },
-  actions: {
+  getters: {
+    saludo(state) {
+      return state.greeting;
+    }
   },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});
