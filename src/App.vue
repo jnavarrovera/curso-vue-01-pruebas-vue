@@ -8,7 +8,7 @@
     ]"
     @buttonClicked="alertaClick($event)"
   />
-  <NavBarLinks/>
+  <NavBarLinks />
 
   <router-view />
 
@@ -16,13 +16,15 @@
    :id="4"
    userRole="desde componente"
   ></DetailView> -->
+  <CartList />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavBar from "@/components/NavBar.vue";
-import NavBarLinks from "@/components/NavBarLinks.vue"
+import NavBarLinks from "@/components/NavBarLinks.vue";
 import { Link } from "./interfaces/link";
+import CartList from "./components/CartList.vue";
 // import DetailView from "./views/DetailView.vue"
 
 export default defineComponent({
@@ -30,6 +32,7 @@ export default defineComponent({
   components: {
     NavBar,
     NavBarLinks,
+    CartList,
     // DetailView
   },
   setup() {

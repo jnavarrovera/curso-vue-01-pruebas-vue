@@ -1,12 +1,15 @@
+import { User } from "@/models/user";
 import { createStore } from "vuex";
+import cartModule from "./cart";
 
-export default createStore({
+export interface IState {
+  authUser: User | null; 
+  greeting: string;
+}
+
+export default createStore<IState>({
   state: {
-    authUser: {
-      id: 5,
-      email: "hola@email.com",
-      name: "Pepe",
-    },
+    authUser: null,
     greeting: "Hola a todas!",
   },
   mutations: {
@@ -20,5 +23,7 @@ export default createStore({
     }
   },
   actions: {},
-  modules: {},
+  modules: {
+    cart: cartModule
+  },
 });
