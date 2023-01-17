@@ -22,18 +22,25 @@
       >{{ link.label }}</button> -->
 
       <!-- Emitir eventos a través de una función que haga más cosas -->
-      <button v-for="link in links" :key="link.label" @click="onClick(link)" class="btn btn-primary">
+      <button
+        v-for="link in links"
+        :key="link.label"
+        @click="onClick(link)"
+        class="btn btn-primary"
+      >
         {{ link.label }}
       </button>
       <button @click="changeGreeting">Cambiar estado</button>
+      <button @click="toggleCart" class="btn btn-secondary">Carrito</button>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType} from "vue";
+import { computed, defineComponent, PropType } from "vue";
 import { Link } from "@/interfaces/link";
 import { useStore } from "vuex";
+import { useCart } from "@/composables/useCart";
 
 interface NavbarProps {
   title: string;
@@ -66,18 +73,18 @@ export default defineComponent({
     // if (props.color === "red") {
     //   greeting.value = "Feliz Navidad!";
     // }
-
+    const { toggleCart } = useCart();
     return {
-      greeting: computed(()=> store.getters['saludo']),
+      greeting: computed(() => store.getters["saludo"]),
       onClick: (link: Link) => {
         console.log("onClick", link);
         // hacer cosas importantes de programador serio...
         ctx.emit("buttonClicked", link);
       },
       changeGreeting: () => {
-        store.commit("cambiaSaludo", 'Qué locura de Vuex');
+        store.commit("cambiaSaludo", "Qué locura de Vuex");
       },
-
+      toggleCart,
     };
   },
 });

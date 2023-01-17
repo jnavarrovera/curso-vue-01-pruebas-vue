@@ -6,29 +6,40 @@
     <div class="cart-items">
       <ul>
         <li v-for="item in cartItems" :key="item.id">
-          {{ item.name }}
+          <div class="element-name">
+            {{ item.name }}
+          </div>
+          <div class="actions">
+            <button @click="removeElementFromCart(item)" class="btn btn-danger">
+              borrar
+            </button>
+          </div>
         </li>
       </ul>
     </div>
     <div class="cart-footer">
-      <button class="btn btn-primary">Comprar</button>
+      <button @click="toggleCart" class="btn btn-sm btn-primary">
+        Comprar
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {  defineComponent } from 'vue'
-import {useCart} from '../composables/useCart'
+import { defineComponent } from "vue";
+import { useCart } from "../composables/useCart";
 
 export default defineComponent({
   setup() {
-    const {cartItems} = useCart()
+    const { cartItems, removeElementFromCart, toggleCart } = useCart();
 
     return {
-      cartItems
-    }
+      cartItems,
+      removeElementFromCart,
+      toggleCart,
+    };
   },
-})
+});
 </script>
 
 
@@ -51,5 +62,15 @@ export default defineComponent({
   background-color: grey;
   height: 50px;
   width: 100%;
+}
+
+.cart-items ul {
+  list-style: none;
+}
+li {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 </style>

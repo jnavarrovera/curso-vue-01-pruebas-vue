@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosHeaders } from "axios";
 
 const fakeShopApi = axios.create({
   baseURL: "https://api.escuelajs.co/api/v1",
@@ -10,10 +10,10 @@ const fakeShopApi = axios.create({
   // }
 });
 
-// fakeShopApi.interceptors.request.use((config) => {
-//   config.headers = {...config.headers} as AxiosHeaders;
-//   config.headers.set('Authorization', 'tokeny')
-//   return config;
-// });
+fakeShopApi.interceptors.request.use((config) => {
+  // TODO
+  (config.headers as AxiosHeaders).set("Authorization", `Bearer popo`);
+  return config;
+});
 
 export default fakeShopApi;

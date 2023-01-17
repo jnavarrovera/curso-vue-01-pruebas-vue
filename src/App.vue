@@ -16,7 +16,7 @@
    :id="4"
    userRole="desde componente"
   ></DetailView> -->
-  <CartList />
+  <CartList v-show="isCartOpen" />
 </template>
 
 <script lang="ts">
@@ -25,6 +25,7 @@ import NavBar from "@/components/NavBar.vue";
 import NavBarLinks from "@/components/NavBarLinks.vue";
 import { Link } from "./interfaces/link";
 import CartList from "./components/CartList.vue";
+import { useCart } from "./composables/useCart";
 // import DetailView from "./views/DetailView.vue"
 
 export default defineComponent({
@@ -36,11 +37,13 @@ export default defineComponent({
     // DetailView
   },
   setup() {
+    const { isCartOpen } = useCart();
     const hola = () => alert("hola");
 
     return {
       alertaClick: (link: Link) => alert(link.label + " Pulsado!"),
       hola, // sólo hay que devolver elementos que se usen en el template
+      isCartOpen,
     };
   },
 });
