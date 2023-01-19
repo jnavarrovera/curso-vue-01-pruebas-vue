@@ -1,6 +1,7 @@
 import { User } from "@/models/user";
 import { createStore } from "vuex";
 import cartModule from "./cart";
+import usersModule from "./users";
 
 export interface IState {
   authUser: User | null; 
@@ -24,6 +25,7 @@ export default createStore<IState>({
   },
   actions: {},
   modules: {
-    cart: cartModule
+    cart: cartModule,
+    users: usersModule
   },
 });

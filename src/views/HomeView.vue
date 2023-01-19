@@ -1,23 +1,37 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Hola mundo"/>
+    <div v-if="isLoading">Cargando...</div>
+    <div class="user-list" v-else>
+      <UserItem v-for="user in users" :key="user.id" :user="user" />
+    </div>
   </div>
-
-  <div> <h3>otro div</h3></div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import useUsers from "@/composables/useUsers";
+import { defineComponent } from "vue";
+import UserItem from "@/components/UserItem.vue";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    HelloWorld,
-  }
+    UserItem,
+  },
+  setup() {
+    const { users, isLoading, fetchUsers } = useUsers();
+
+    fetchUsers();
+
+    return { users, isLoading };
+  },
 });
 </script>
 
 <style scoped>
+.user-list {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  gap: 1rem 1rem;
+}
 </style>
