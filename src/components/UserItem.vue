@@ -6,6 +6,14 @@
     <div class="user-info">
       <div class="user-name">{{ user.name }}</div>
       <div class="user-email">{{ user.email }}</div>
+      <div class="buttons">
+        <button class="btn btn-sm btn-primary" @click="$emit('addCart', user)">
+          Al Carro
+        </button>
+        <button class="btn btn-sm btn-success" @click="$emit('goDetail', user)">
+          Detalle
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,18 +33,16 @@ export default defineComponent({
 
 <style scoped>
 .user-item {
-    width: 300px;
-    display: flex;
-    border: 1px solid black;
-
+  width: 300px;
+  display: flex;
+  border: 1px solid black;
 }
 
 .user-avatar {
-    width: 50%;
-
+  width: 50%;
 }
 .user-avatar > img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 </style>

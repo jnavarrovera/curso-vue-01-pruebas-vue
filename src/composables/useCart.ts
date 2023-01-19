@@ -6,11 +6,11 @@ export const useCart = () => {
   const store = useStore();
 
   return {
-    // state
+    // getters
     cartItems: computed(() => store.getters["cart/getCartElements"]),
     isCartOpen: computed(() => store.getters["cart/getIsOpen"]),
 
-    //mutations
+    // mutations
     addElementToCart: (user: User) => store.commit("cart/addElement", user),
     removeElementFromCart: (user: User) =>
       store.commit("cart/removeElement", user),
