@@ -29,10 +29,10 @@ export default defineComponent({
   },
   setup(props) {
     const { addElementToCart } = useCart();
-    let user = ref<User>();
-    fakeShopAPI
-      .get<unknown, AxiosResponse<User>>(`/users/${props.id}`)
-      .then((resp) => (user.value = resp.data));
+    // let user = ref<User>();
+    // fakeShopAPI
+    //   .get<unknown, AxiosResponse<User>>(`/users/${props.id}`)
+    //   .then((resp) => (user.value = resp.data));
     return {
       user,
       addElementToCart,
