@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user">
+  <div v-if="!isLoading">
     <h1>Nombre: {{ user.name }}</h1>
     <h2>Email: {{ user.email }}</h2>
     <img :src="user.avatar" alt="" />
@@ -14,10 +14,9 @@
 
 <script lang="ts">
 import { useCart } from "@/composables/useCart";
-import { AxiosResponse } from "axios";
-import { defineComponent, ref } from "vue";
-import fakeShopAPI from "../api/fakeShopApi";
-import { User } from "../models/user";
+import useUsers from "@/composables/useUsers";
+import { defineComponent } from "vue";
+
 
 export default defineComponent({
   props: {
@@ -29,13 +28,16 @@ export default defineComponent({
   },
   setup(props) {
     const { addElementToCart } = useCart();
+    const { user, fetchUserById, isLoading } = useUsers();
     // let user = ref<User>();
     // fakeShopAPI
     //   .get<unknown, AxiosResponse<User>>(`/users/${props.id}`)
     //   .then((resp) => (user.value = resp.data));
+    fetchUserById(props.id);
     return {
       user,
       addElementToCart,
+      isLoading
     };
   },
 });
